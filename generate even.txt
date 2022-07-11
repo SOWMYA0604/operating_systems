@@ -1,0 +1,13 @@
+echo "Enter n"
+i=0
+read n
+while test $i -le $n
+do
+        ii=`expr $i % 2`
+        if test $ii -eq 0
+        then
+                echo $i
+        fi
+i=`expr $i + 1`
+done
+~
