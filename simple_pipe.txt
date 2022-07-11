@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<unistd.h>
+int main() {
+int pipefds[2];
+int status;
+char wmsg[2][20]={"Bysani","Sowmya"};
+char rmsg[20];
+status = pipe(pipefds);
+if (status == -1)
+ {
+printf("Unable to create pipe\n");
+return 1;
+}
+printf("Writing to file---1st message---%s\n",wmsg[0]);
+write(pipefds[1],wmsg[0],sizeof(wmsg[0]));
+read(pipefds[0],rmsg,sizeof(rmsg));
+printf("Reading from file---1st message--%s\n",rmsg);
+printf("Writing to file---2st message---%s\n",wmsg[0]);
+write(pipefds[1],wmsg[1],sizeof(wmsg[0]));
+read(pipefds[0],rmsg,sizeof(rmsg));
+printf("Reading from file---2st message--%s\n",rmsg);
+return 0;
+}
